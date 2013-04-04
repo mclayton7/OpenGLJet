@@ -1,0 +1,13 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 26.09.2012 22:14:17
+
+mtllib jet.mtl
+
+#
+# object HornCock
+#
+
+
+#f 21//22 33//34 55//56 
+f 1234/5678/3012 4123/5123/6123 7123/1238/1239
+
