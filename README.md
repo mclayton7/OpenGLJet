@@ -1,18 +1,20 @@
-OpenGLJet
+#OpenGLJet
 =========
-
 Generates an OpenGL model from Wavefront .OBJ and .MTL files.
 
-Compile (requires OSX Dev tools)
+##Compile (requires OSX Dev tools)
 =========
 Compile with:
+```bash
 make
+```
 
-Usage (loads jet.obj and jet.mtl)
+##Usage (loads jet.obj and jet.mtl)
 ========
 To run:
-
+```bash
 ./jet
+```
 
 Keyboard Shortcuts:
 'x', 'y', and 'z' are for rotation about their respective axis.
