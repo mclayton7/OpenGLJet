@@ -8,6 +8,7 @@ Compile with:
 ```bash
 make
 ```
+Ignore any Deprecation warnings if compiling on OSX 10.9.
 
 ##Usage (loads jet.obj and jet.mtl)
 ========

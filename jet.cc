@@ -351,7 +351,8 @@ void drawModel()
 
 
 void init(void)
-{ // Called from main
+{
+    // Called from main
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -458,9 +459,18 @@ void keyboard (unsigned char key, int x, int y)
 
 int main(int argc, char* argv[])
 {
+    cout << "Use X, Y, and Z for Rotation" << endl;
+    cout << "s and S for zoom, and r to reset the angles" << endl;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-    glutInitWindowSize(500, 500);
+    if(argc == 2)
+    {
+        glutInitWindowSize(atol(argv[1]), atol(argv[1]));
+    }
+    else
+    {
+        glutInitWindowSize(500, 500);
+    }
     glutInitWindowPosition(100, 100);
     glutCreateWindow("Jet Display");
     Read();
