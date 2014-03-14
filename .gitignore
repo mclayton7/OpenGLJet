@@ -1,5 +1,11 @@
 .DS_Store
+<<<<<<< HEAD
 *.xcworkspace
 Thumbs.db
 *.dSYM
 jet
+=======
+*.o
+jet
+Thumbs.db
+>>>>>>> d8ef21633a1ef64ef1ebf20b7afa3892f08c22ce
