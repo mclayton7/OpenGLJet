@@ -2,13 +2,22 @@
 =========
 Generates an OpenGL model from Wavefront .OBJ and .MTL files.
 
-##Compile (requires OSX Dev tools)
+##Compile on OSX (requires OSX Dev tools)
 =========
 Compile with:
 ```bash
+cp Makefile.osx Makefile
 make
 ```
 Ignore any Deprecation warnings if compiling on OSX 10.9.
+
+##Compile on Linux (requires OpenGL Libraries)
+=========
+Compile with:
+```bash
+cp Makefile.linux Makefile
+make
+```
 
 ##Usage (loads jet.obj and jet.mtl)
 ========
