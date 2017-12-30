@@ -4,3 +4,7 @@
 jet
 *.o
 Thumbs.db
+
+# Waf
+.build
+.lock*

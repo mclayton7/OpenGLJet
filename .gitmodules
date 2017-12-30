@@ -1,0 +1,4 @@
+[submodule "crank"]
+	path = crank
+	url = git@github.com:mclayton7/crank.git
+	branch = master

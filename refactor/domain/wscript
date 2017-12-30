@@ -1,0 +1,13 @@
+#! /usr/bin/env python
+# encoding: utf-8
+# Copyright Mac Clayton 2017
+
+def build(bld):
+    source_files = bld.path.ant_glob('*.cxx')
+    bld(
+        source=source_files,
+        target='jetDomain',
+        features=['qt5', 'cxx', 'cxxstlib'],
+        use=['QT5CORE', 'QT5GUI', 'QT5BASE', 'QT5OPENGL', 'OPENGL32', 'GLUT'],
+        export_includes='.',
+)

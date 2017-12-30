@@ -1,0 +1,16 @@
+#! /usr/bin/env python
+# encoding: utf-8
+# Copyright Mac Clayton 2017
+
+
+def build(bld):
+    source_files = bld.path.ant_glob('*.cc')
+    bld(
+        source=source_files,
+        target='original_jet',
+        features=['cxx', 'cxxprogram'],
+        use=['GLUT'],
+	)
+
+    bld(features='subst', source='jet.mtl', target='jet.mtl', is_copy=True)
+    bld(features='subst', source='jet.obj', target='jet.obj', is_copy=True)

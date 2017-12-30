@@ -28,17 +28,17 @@
 
 #include <fstream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
-static const float DEG2RAD = M_PI/180;
 static float xpos = 0, ypos = 0, zpos = 0;
 
 
-class RGB
+class RGBColor
 {
 public:
-    RGB(GLfloat x, GLfloat y, GLfloat z) : r(x), g(y), b(z) {}
+    RGBColor(GLfloat x, GLfloat y, GLfloat z) : r(x), g(y), b(z) {}
 public:
     GLfloat r, g, b;
 };
@@ -83,23 +83,23 @@ public:
     bool hasTexture;
     Vertex v, n;     // First, Second, and Third Vertices of Face
     vTexture t;
-    // Normal x, y, z;     // Normal 
+    // Normal x, y, z;     // Normal
 };
 
 class Material
 {
 public:
     Material()
-        : newmtl(0), Ns(0), Tr(0), Ka(RGB(0,0,0)), Kd(RGB(0,0,0)), Ke(RGB(0,0,0)), Ks(RGB(0,0,0)) {}
-    Material(int a, GLfloat ns, GLfloat tr, RGB ka, RGB kd, RGB ke, RGB ks)
+        : newmtl(0), Ns(0), Tr(0), Ka(RGBColor(0,0,0)), Kd(RGBColor(0,0,0)), Ke(RGBColor(0,0,0)), Ks(RGBColor(0,0,0)) {}
+    Material(int a, GLfloat ns, GLfloat tr, RGBColor ka, RGBColor kd, RGBColor ke, RGBColor ks)
         : newmtl(a), Ns(ns), Tr(tr), Ka(ka), Kd(kd), Ke(ke), Ks(ks) {}
 public:
     unsigned int newmtl;
     GLfloat Ns, Tr;     // Shininess and Transparency Values
-    RGB Ka;             // Ambient lighting in RGB
-    RGB Kd;             // Diffuse lighting in RGB
-    RGB Ke;             // Emissive lighting in RGB
-    RGB Ks;             // Specular lighting in RGB
+    RGBColor Ka;             // Ambient lighting in RGBColor
+    RGBColor Kd;             // Diffuse lighting in RGBColor
+    RGBColor Ke;             // Emissive lighting in RGBColor
+    RGBColor Ks;             // Specular lighting in RGBColor
 };
 
 
@@ -127,7 +127,7 @@ void Read()
     {
         string header;
         ifs >> header;
-        
+
         if (header == string("mtllib"))
         {
             string mtllib;
@@ -152,7 +152,7 @@ void Read()
             float vt[3];
             ifs >> vt[0] >> vt[1] >> vt[2];
             vTextures.push_back(new vTexture(vt[0], vt[1], vt[2]));
-            
+
         }
         else if (header == string("usemtl"))
         {
@@ -266,25 +266,25 @@ void ReadMtl()
         {
             float Ka[3];
             ifs >> Ka[0] >> Ka[1] >> Ka[2];
-            temp.Ka = RGB(Ka[0], Ka[1], Ka[2]);
+            temp.Ka = RGBColor(Ka[0], Ka[1], Ka[2]);
         }
         else if (header == string("Kd"))
         {
             float Kd[3];
             ifs >> Kd[0] >> Kd[1] >> Kd[2];
-            temp.Kd = RGB(Kd[0], Kd[1], Kd[2]);
+            temp.Kd = RGBColor(Kd[0], Kd[1], Kd[2]);
         }
         else if (header == string("Ks"))
         {
             float Ks[3];
             ifs >> Ks[0] >> Ks[1] >> Ks[2];
-            temp.Ks = RGB(Ks[0], Ks[1], Ks[2]);
+            temp.Ks = RGBColor(Ks[0], Ks[1], Ks[2]);
         }
         else if (header == string("Ke"))
         {
             float Ke[3];
             ifs >> Ke[0] >> Ke[1] >> Ke[2];
-            temp.Ke = RGB(Ke[0], Ke[1], Ke[2]);
+            temp.Ke = RGBColor(Ke[0], Ke[1], Ke[2]);
             // Since Ke is the last material value, we can push temp onto the vector
             materials.push_back(new Material(temp));
         }
@@ -298,7 +298,7 @@ void setMaterial(int materialId)
     GLfloat diffuse[4];
     GLfloat emmisive[4];
     GLfloat shiny;
-    
+
     // Ugly but works
     specular[0] = materials[materialId]->Ks.r;
     specular[1] = materials[materialId]->Ks.g;
@@ -338,7 +338,7 @@ void drawModel()
                          faces[i]->t.y,
                          faces[i]->t.z);
         }
-        // Draw normal vectors and vertices 
+        // Draw normal vectors and vertices
         glNormal3f( faces[i]->n.x,
                     faces[i]->n.y,
                     faces[i]->n.z);
@@ -400,12 +400,12 @@ void display(void)
     glLoadIdentity();
     gluLookAt(0, 15.0, -25.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
     // rotations and scaling here
-    glPushMatrix(); 
+    glPushMatrix();
     glRotatef(xangle, 1, 0, 0);        // X axis rotation
     glRotatef(yangle, 0, 1, 0);        // Y axis rotation
     glRotatef(zangle, 0, 0, 1);        // Z axis rotation
     glScalef(scale, scale, scale);  // Set scaling factor
-    
+
     // Draw th emodel
     drawModel();
     // Swap the double buffers
@@ -424,7 +424,7 @@ void reshape(int w, int h)
 
 void keyboard (unsigned char key, int x, int y)
 {
-    
+
     switch (key)
     {
         case 27:

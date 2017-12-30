@@ -1,0 +1,16 @@
+#! /usr/bin/env python
+# encoding: utf-8
+# Copyright Mac Clayton 2017
+
+
+def build(bld):
+    source_files = bld.path.ant_glob('*.cxx')
+    bld(
+        source=source_files,
+        target='jet',
+        features=['qt5', 'cxx', 'cxxprogram'],
+        use=['jetDomain'],
+	)
+
+    bld(features='subst', source='jet.mtl', target='jet.mtl', is_copy=True)
+    bld(features='subst', source='jet.obj', target='jet.obj', is_copy=True)

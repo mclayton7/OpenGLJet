@@ -1,0 +1,4 @@
+name: "OpenGLJet"
+libraries:
+  - qt5: "C:\\Qt\\5.10.0\\msvc2017_64"
+  - FreeGLUT: "C:\\Developer\\libs\\freeglut"
